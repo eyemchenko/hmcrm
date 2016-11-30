@@ -20,14 +20,17 @@ class ContactController extends Controller
     /**
      * Lists all Contact entities.
      *
+     * @param Request $request Request
+     *
      * @return Response
      *
      * @Route("/contact", name="contact_list")
      * @Template()
      */
-    public function indexAction()
+    public function indexAction(Request $request)
     {
         $em = $this->getDoctrine()->getManager();
+        $paginator  = $this->get('knp_paginator');
 
         $query = $em->getRepository('AppBundle:Contact')->createQueryBuilder('c')
                     ->where('c.user = :user')
@@ -36,18 +39,21 @@ class ContactController extends Controller
                     ->getQuery()
                     ->getResult();
 
-        $resultArray = [];
+        $pagination = $paginator->paginate(
+            $query, /* query NOT result */
+            $request->query->getInt('page', 1)/*page number*/,
+            3/*limit per page*/);
 
-        foreach ($query as $item) {
-            $resultArray[] = [
-                'id' => $item->getId(),
-                'name' => $item->getName(),
-                'type' => 'person_show',
-            ];
-        }
+//        foreach ($query as $item) {
+//            $pagination = [
+//                'id' => $item->getId(),
+//                'name' => $item->getName(),
+//                'type' => 'person_show',
+//            ];
+//        }
 
         return [
-            'entities' => $resultArray,
+            'pagination' => $pagination,
         ];
     }
 

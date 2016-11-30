@@ -83,13 +83,13 @@
                         </tr>
                         </thead>
                         <tbody>
-                        {% for entity in entities %}
+                        {% for contact in pagination %}
                             <tr class="footable-even" style="display: table-row;">
                                 <td class="footable-visible footable-first-column"><span class="footable-toggle"></span>
                                     {#<a href="{{ path('lead_show', { 'id' : entity.getId() }) }}">{{ entity.getId() }}</a>#}
                                 </td>
                                 <td class="footable-visible">
-                                    {{ entity.name }}
+                                    {{ contact.name }}
                                 </td>
                                 <td class="footable-visible">
                                     {#{{ entity.getEmail }}#}
@@ -102,9 +102,9 @@
                                 </td>
                                 <td class="text-right footable-visible footable-last-column">
                                     <div class="btn-group">
-                                        <a href="/lead/show/{{ entity.id }}" class="btn-white btn btn-xs">View</a>
-                                        <a href="/lead/edit/{{ entity.id }}" class="btn-white btn btn-xs">Edit</a>
-                                        <a href="/lead/delete/{{ entity.id }}" class="btn-white btn btn-xs">Delete</a>
+                                        <a href="/lead/show/{{ contact.id }}" class="btn-white btn btn-xs">View</a>
+                                        <a href="/lead/edit/{{ contact.id }}" class="btn-white btn btn-xs">Edit</a>
+                                        <a href="/lead/delete/{{ contact.id }}" class="btn-white btn btn-xs">Delete</a>
                                     </div>
                                 </td>
                             </tr>
