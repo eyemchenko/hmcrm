@@ -44,14 +44,6 @@ class ContactController extends Controller
             $request->query->getInt('page', 1)/*page number*/,
             3/*limit per page*/);
 
-//        foreach ($query as $item) {
-//            $pagination = [
-//                'id' => $item->getId(),
-//                'name' => $item->getName(),
-//                'type' => 'person_show',
-//            ];
-//        }
-
         return [
             'pagination' => $pagination,
         ];
